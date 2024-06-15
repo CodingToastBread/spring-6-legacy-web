@@ -7,18 +7,11 @@
     <!-- Controller Activate! -->
     <mvc:annotation-driven />
 
-    <!-- bean scanner -->
+    <!-- Bean scanner -->
     <context:component-scan base-package="coding.toast.springweblegacy"/>
-    <!--<context:component-scan use-default-filters="false"
-                            base-package="coding.toast.springweblegacy.**.controller">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-    </context:component-scan>-->
 
-
-    <!--thymeleaf  -->
-    <!-- https://www.thymeleaf.org/doc/tutorials/3.1/thymeleafspring.html
-         - 2 The SpringStandard Dialect 목차 참고 -->
+    <!-- Thymeleaf Template Engine Activate -->
+    <!-- reference : https://www.thymeleaf.org/doc/tutorials/3.1/thymeleafspring.html -->
 
     <!-- SpringResourceTemplateResolver automatically integrates with Spring's own -->
     <!-- resource resolution infrastructure, which is highly recommended.          -->
@@ -26,13 +19,6 @@
           class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
         <property name="suffix" value=".html" />
-        <!-- controller 에서 return 할 때는 user/userList => /WEB-INF/templates/user/userList.html -->
-
-        <!-- HTML is the default value, added here for the sake of clarity.          -->
-        <!--<property name="templateMode" value="HTML" />-->
-        <!-- Template cache is true by default. Set to false if you want             -->
-        <!-- templates to be automatically updated when modified.                    -->
-        <!--<property name="cacheable" value="true" />-->
     </bean>
 
     <!-- SpringTemplateEngine automatically applies SpringStandardDialect and      -->
@@ -40,24 +26,12 @@
     <bean id="templateEngine"
           class="org.thymeleaf.spring6.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver" />
-        <!-- Enabling the SpringEL compiler can speed up execution in most           -->
-        <!-- scenarios, but might be incompatible with specific cases when           -->
-        <!-- expressions in one template are reused across different data types, so  -->
-        <!-- this flag is "false" by default for safer backwards compatibility.      -->
-        <!--<property name="enableSpringELCompiler" value="true" />-->
     </bean>
 
     <bean class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
-
-        <!-- 아래처럼 contentType 지정 안하면 text/html;charset=ISO-8859-1 사용되니 주의하세요! -->
-        <!-- 컨텐츠 타입, 인코딩 내용은 ThymeleafView 클래스에서 "getForceContentType()" 를 검색하면 확인 가능합니다. -->
         <property name="contentType" value="text/html"/>
         <property name="characterEncoding" value="UTF-8" />
-
-        <!-- NOTE 'order' and 'viewNames' are optional -->
-        <!--<property name="order" value="1" />-->
-        <!--<property name="viewNames" value="*.html" />-->
     </bean>
 
 
@@ -69,5 +43,8 @@
     </bean>
 
     <!-- Resource Resolve ByPassing Default Servlet -->
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!-- for favicon -->
+    <mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
+    <!-- for other resources -->
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

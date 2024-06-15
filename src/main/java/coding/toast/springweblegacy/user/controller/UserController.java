@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Controller
 public class UserController {
 	@GetMapping("/users")
 	public String userListInfo(Model model) {
-		model.addAttribute("userList",
+		model.addAttribute("users",
 			List.of(
 				new UserInfoResponse("aaa", "dailyCode1", 23),
 				new UserInfoResponse("bbb", "dailyCode2", 24),
