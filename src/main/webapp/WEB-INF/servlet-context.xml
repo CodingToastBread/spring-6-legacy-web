@@ -4,6 +4,20 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:message/global-message</value>
+                <value>classpath:message/custom-message</value>
+            </list>
+        </property>
+        <property name="cacheSeconds" value="60"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="fallbackToSystemLocale" value="false"/>
+    </bean>
+
+    <context:property-placeholder file-encoding="UTF-8" location="classpath:placeholder.properties" />
+
     <!-- Controller Activate! -->
     <mvc:annotation-driven />
 

@@ -13,8 +13,16 @@
         <appender-ref ref="consoleAppender" />
     </logger>
 
+    <logger name="org.springframework.data" level="DEBUG" additivity="false">
+        <appender-ref ref="consoleAppender" />
+    </logger>
+
+    <logger name="org.springframework.jdbc" level="DEBUG" additivity="false">
+        <appender-ref ref="consoleAppender" />
+    </logger>
+
     <!-- 기본 로거 ( Root Logger ) -->
-    <root level="info">
+    <root level="INFO">
         <appender-ref ref="consoleAppender" />
     </root>
 
