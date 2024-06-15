@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Info</title>
+</head>
+<body>
+  <h1>HI THERE! You Have Requested UserController list info</h1>
+  <div id="user-list-div">
+    <!--<div th:text="${userList}"></div>-->
+    <div th:each="u : ${userList}">
+      <span th:text="${u.id}">id</span>
+      <span th:text="${u.username}">username</span>
+      <span th:text="${u.age}">age</span>
+      <hr/>
+    </div>
+  </div>
+</body>
+</html>
