@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Controller Activate! -->
+    <mvc:annotation-driven />
+
+    <!-- Resource Resolve ByPassing Default Servlet -->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!--thymeleaf  -->
+    <!-- https://www.thymeleaf.org/doc/tutorials/3.1/thymeleafspring.html
+         - 2 The SpringStandard Dialect 목차 참고 -->
+
+
+    <!-- bean scanner -->
+    <context:component-scan base-package="coding.toast.springweblegacy"/>
+    
+    <!--<context:component-scan use-default-filters="false"
+                            base-package="me.dailycode.**.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>-->
+
+    <!-- multipart resolver, you must config Multipart Configuration First On web.xml
+         Or AbstractAnnotationConfigDispatcherServletInitializer Extended Class -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+        <property name="resolveLazily" value="true"/>
+        <property name="strictServletCompliance" value="true"/>
+    </bean>
+
+</beans>

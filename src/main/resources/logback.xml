@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} %-5level --- [%thread] %logger[%method:%line] - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="coding.toast.springweblegacy" level="INFO" additivity="false">
+        <appender-ref ref="consoleAppender" />
+    </logger>
+
+    <!-- 기본 로거 ( Root Logger ) -->
+    <root level="info">
+        <appender-ref ref="consoleAppender" />
+    </root>
+
+</configuration>
