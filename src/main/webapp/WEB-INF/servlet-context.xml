@@ -1,64 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <!-- only component scan. all config is under [coding.toast.springweblegacy.config] package -->
+    <context:component-scan base-package="coding.toast.springweblegacy"/>
+
+    <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+    <!--  [ for those who want to config with xml file, I will remain the configuration with comments.  ]  -->
+    <!--  [ by the way, I config DataJdbcConfig with java at the first place, so there is no xml config ]  -->
+    <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <!-- replaced with MessageSourceConfig.java -->
+    <!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
                 <value>classpath:message/global-message</value>
-                <value>classpath:message/custom-message</value>
             </list>
         </property>
         <property name="cacheSeconds" value="60"/>
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="fallbackToSystemLocale" value="false"/>
-    </bean>
+    </bean>-->
 
-    <context:property-placeholder file-encoding="UTF-8" location="classpath:placeholder.properties" />
+    <!-- replaced with PropertyPlaceHolderConfig.java -->
+    <!--<context:property-placeholder file-encoding="UTF-8" location="classpath:placeholder.properties" />-->
 
-    <!-- Controller Activate! -->
-    <mvc:annotation-driven />
+    <!-- After this line, All configuration is replaced with WebConfiguration.java -->
+    <!--<mvc:annotation-driven />-->
 
-    <!-- Bean scanner -->
-    <context:component-scan base-package="coding.toast.springweblegacy"/>
-
-    <!-- Thymeleaf Template Engine Activate -->
-    <!-- reference : https://www.thymeleaf.org/doc/tutorials/3.1/thymeleafspring.html -->
-
-    <!-- SpringResourceTemplateResolver automatically integrates with Spring's own -->
-    <!-- resource resolution infrastructure, which is highly recommended.          -->
-    <bean id="templateResolver"
+    <!-- Thymeleaf Template Engine Activate (1) -->
+    <!--<bean id="templateResolver"
           class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
         <property name="suffix" value=".html" />
-    </bean>
+    </bean>-->
 
-    <!-- SpringTemplateEngine automatically applies SpringStandardDialect and      -->
-    <!-- enables Spring's own MessageSource message resolution mechanisms.         -->
-    <bean id="templateEngine"
+    <!-- Thymeleaf Template Engine Activate (2) -->
+    <!--<bean id="templateEngine"
           class="org.thymeleaf.spring6.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver" />
-    </bean>
+    </bean>-->
 
-    <bean class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+    <!-- Thymeleaf Template Engine Activate (3) -->
+    <!--<bean class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
         <property name="contentType" value="text/html"/>
         <property name="characterEncoding" value="UTF-8" />
-    </bean>
+    </bean>-->
 
-
-    <!-- multipart resolver, you must config Multipart Configuration First On web.xml
-         Or AbstractAnnotationConfigDispatcherServletInitializer Extended Class -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+    <!-- for file upload, registering Multipart Resolver -->
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
         <property name="resolveLazily" value="true"/>
         <property name="strictServletCompliance" value="true"/>
-    </bean>
+    </bean>-->
 
     <!-- Resource Resolve ByPassing Default Servlet -->
-    <!-- for favicon -->
-    <mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
-    <!-- for other resources -->
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <!--<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />-->
+
 </beans>
