@@ -36,10 +36,14 @@ placeholder.properties 에 JDBC 설정값들을 넣은 상태입니다. <br/>
 
 <br><br>
 
-# 📌 how to reload 
+# 📌 how to reload thymeleaf html
 
+개발을 하면서 빠르게 타임리프 html 변경하고 바로 적용해서 봐야됩니다.<br>
+이럴 때는 아래와 같이 하면 됩니다. 단! 인텔리제이를 사용하는 한해서 가능한 방법입니다.
 
-## templateResolver 빈 설정에서 cacheable=false 설정
+<br>
+
+## 1. SpringResourceTemplateResolver 빈 설정에서 cacheable=false 설정
 
 ```java
 @Bean
@@ -47,13 +51,21 @@ public SpringResourceTemplateResolver templateResolver() {
     SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
     resolver.setPrefix("/WEB-INF/templates/");
     resolver.setSuffix(".html");
-    resolver.setCacheable(false); // add this line
+    resolver.setCacheable(false); // <== 이 코드를 추가합니다.
     return resolver;
 }
 ```
+위의 설정은 [WebConfiguration.java](src/main/java/coding/toast/springweblegacy/config/web/WebConfiguration.java) 에서 확인할 수 있습니다.
 
-## idea HotSwap 기능사용
 
-이후에 `ctrl + F10` 을 누르면 어떤창이 뜨는데
-`Update classes and resources` 를 선택하고 `OK` 를 클릭한다.
+<br>
+
+## 2. 인텔리제이 HotSwap 기능 사용
+
+`디버깅 모드` 로 톰캣을 구동합니다.<br>
+이후에 `ctrl + F10` 을 누르면 아래 그림과 같은 팝업창이 뜨는데<br>
+`Update classes and resources` 를 선택하고 `OK` 를 클릭합니다.<br>
+이후에 다시 변경한 `html` 이 보이는 페이지를 열면 정상적으로 반영된 것을 확인할 수 있습니다.<br>
+
+![idea64_fyX9r289eB.png](readme_img/idea64_fyX9r289eB.png)
 
