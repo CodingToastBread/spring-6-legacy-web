@@ -64,7 +64,7 @@ public SpringResourceTemplateResolver templateResolver() {
 
 `디버깅 모드` 로 톰캣을 구동합니다.<br>
 이후에 `ctrl + F10` 을 누르면 아래 그림과 같은 팝업창이 뜨는데<br>
-`Update classes and resources` 를 선택하고 `OK` 를 클릭합니다.<br>
+`Update resources` 를 선택하고 `OK` 를 클릭합니다.<br>
 이후에 다시 변경한 `html` 이 보이는 페이지를 열면 정상적으로 반영된 것을 확인할 수 있습니다.<br>
 
 ![idea64_fyX9r289eB.png](readme_img/idea64_fyX9r289eB.png)
