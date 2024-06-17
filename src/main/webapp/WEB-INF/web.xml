@@ -4,14 +4,15 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
-    <!-- Create Root Application Context -->
-    <context-param>
+    <!-- Create Root Application Context (Not Used) -->
+    <!--<context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/root-context.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    </listener>-->
+    <!-- I'll only use dispatcherServlet ApplicationContext -->
 
     <!-- For RequestContextHolder Util -->
     <listener>
@@ -41,13 +42,13 @@
         <servlet-name>appServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/servlet-context.xml</param-value>
+            <param-name>contextClass</param-name>
+            <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
         </init-param>
-        <!--<init-param>
-            <param-name>throwExceptionIfNoHandlerFound</param-name>
-            <param-value>true</param-value>
-        </init-param>-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>coding.toast.springweblegacy.config.GlobalBeanScanner</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
         <multipart-config>
             <max-file-size>10485760</max-file-size>
@@ -60,5 +61,4 @@
         <servlet-name>appServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
 </web-app>

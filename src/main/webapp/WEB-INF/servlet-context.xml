@@ -4,13 +4,18 @@
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- only component scan. all config is under [coding.toast.springweblegacy.config] package -->
-    <context:component-scan base-package="coding.toast.springweblegacy"/>
+    <!--
+    I Config Spring ApplicationContext with java configuration style, not xml style.
+    all config is under [coding.toast.springweblegacy.config] package
+    -->
 
     <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
     <!--  [ for those who want to config with xml file, I will remain the configuration with comments.  ]  -->
     <!--  [ by the way, I config DataJdbcConfig with java at the first place, so there is no xml config ]  -->
     <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+    <!-- replaced with GlobalBeanScanner.java -->
+    <!--<context:component-scan base-package="coding.toast.springweblegacy"/>-->
 
     <!-- replaced with MessageSourceConfig.java -->
     <!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
