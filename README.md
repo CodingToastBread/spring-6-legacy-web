@@ -32,3 +32,28 @@ placeholder.properties 에 JDBC 설정값들을 넣은 상태입니다. <br/>
 수동적인 버전 기입은 추후에 CVE 문제를 고치는데 시간이 많이 걸릴듯하여 BOM 을 사용했습니다.<br/>
 여기서 사용되는 BOM 은 spring-boot 3.3.0 에서 사용되는 것과 동일한 BOM 입니다.<br/>
 
+
+
+<br><br>
+
+# 📌 how to reload 
+
+
+## templateResolver 빈 설정에서 cacheable=false 설정
+
+```java
+@Bean
+public SpringResourceTemplateResolver templateResolver() {
+    SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+    resolver.setPrefix("/WEB-INF/templates/");
+    resolver.setSuffix(".html");
+    resolver.setCacheable(false); // add this line
+    return resolver;
+}
+```
+
+## idea HotSwap 기능사용
+
+이후에 `ctrl + F10` 을 누르면 어떤창이 뜨는데
+`Update classes and resources` 를 선택하고 `OK` 를 클릭한다.
+
