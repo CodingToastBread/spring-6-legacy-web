@@ -50,6 +50,7 @@
             <param-value>coding.toast.springweblegacy.config.GlobalBeanScanner</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
         <multipart-config>
             <max-file-size>10485760</max-file-size>
             <max-request-size>20971520</max-request-size>
