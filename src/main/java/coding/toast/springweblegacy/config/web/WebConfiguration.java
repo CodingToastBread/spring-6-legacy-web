@@ -46,6 +46,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 		resolver.setPrefix("/WEB-INF/templates/");
 		resolver.setSuffix(".html");
+		// resolver.setCacheable(false); // For HotSwap + Refreshing Thymeleaf HTML, uncomment this line.
 		return resolver;
 	}
 	

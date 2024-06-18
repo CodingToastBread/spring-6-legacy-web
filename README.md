@@ -67,5 +67,12 @@ public SpringResourceTemplateResolver templateResolver() {
 `Update resources` 를 선택하고 `OK` 를 클릭합니다.<br>
 이후에 다시 변경한 `html` 이 보이는 페이지를 열면 정상적으로 반영된 것을 확인할 수 있습니다.<br>
 
-![idea64_fyX9r289eB.png](readme_img/idea64_fyX9r289eB.png)
+![idea64_lTWRZ5hmMM.png](readme_img/idea64_lTWRZ5hmMM.png)
 
+<br>
+
+## 테스트 화면:
+
+![idea64_aoqeKthsf8.gif](readme_img/idea64_aoqeKthsf8.gif)
+
+> 재차 말씀드리자만 "디버깅 모드" 로 톰캣을 실행해야 합니다! 꼭! 잊지마세요!
