@@ -82,7 +82,7 @@ public SpringResourceTemplateResolver templateResolver() {
 
 # 📌 how to login h2 console
 
-톰캣을 구동 시키고 http://localhost:11111/h2-console/ 에 접속합니다.\
+톰캣을 구동 시키고 `http://localhost:<여러분들의 포트번호>/h2-console/` 에 접속합니다.\
 그러면 아래와 같은 콘솔창이 보입니다.
 
 ![chrome_v3TSa2EanD.png](readme_img/chrome_v3TSa2EanD.png)
@@ -100,6 +100,17 @@ public SpringResourceTemplateResolver templateResolver() {
 
 ![chrome_gGR0CeVyjw.png](readme_img/chrome_gGR0CeVyjw.png)
 
+> `주의사항` <br> 
+> 현재 이 프로젝트는 h2 database connection 설정을 postgresql db 와 호환되게 만들었습니다.<br>
+> 
+> ```
+> dataSource.setUrl("jdbc:h2:mem:testdb;MODE=PostgreSQL;" +
+> "DATABASE_TO_UPPER=FALSE;" +
+> "CASE_INSENSITIVE_IDENTIFIERS=TRUE;" +
+> "DB_CLOSE_DELAY=-1;" +
+>"DB_CLOSE_ON_EXIT=false");
+>```
+> 자세한 내용은 [DetailH2DriverDataSourceFactory](src/main/java/coding/toast/springweblegacy/config/jdbc/DetailH2DriverDataSourceFactory.java) 을 참고하세요.
 
 
 

@@ -21,7 +21,12 @@ public class DetailH2DriverDataSourceFactory implements DataSourceFactory {
 
             @Override
             public void setUrl(String url) {
-                dataSource.setUrl("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false"); // ;DATABASE_TO_UPPER=FALSE
+                dataSource.setUrl("""
+                 jdbc:h2:mem:testdb;MODE=PostgreSQL;\
+                 DATABASE_TO_UPPER=FALSE;\
+                 CASE_INSENSITIVE_IDENTIFIERS=TRUE;\
+                 DB_CLOSE_DELAY=-1;\
+                 DB_CLOSE_ON_EXIT=false""");
             }
 
             @Override
