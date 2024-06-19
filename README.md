@@ -98,7 +98,7 @@ public SpringResourceTemplateResolver templateResolver() {
 
 정상적으로 로그인이 도면 아래와 같이 화면이 뜹니다.
 
-![chrome_gGR0CeVyjw.png](readme_img/chrome_gGR0CeVyjw.png)
+![chrome_5kcfteoGcc.png](readme_img/chrome_5kcfteoGcc.png)
 
 > `주의사항` <br> 
 > 현재 이 프로젝트는 h2 database connection 설정을 postgresql db 와 호환되게 만들었습니다.<br>
