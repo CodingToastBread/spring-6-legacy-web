@@ -1,6 +1,6 @@
 package coding.toast.springweblegacy.user.controller;
 
-import coding.toast.springweblegacy.user.UserRepository;
+import coding.toast.springweblegacy.user.repository.UserRepository;
 import coding.toast.springweblegacy.user.data.request.UserInfoRequest;
 import coding.toast.springweblegacy.user.data.table.User;
 import jakarta.validation.Valid;

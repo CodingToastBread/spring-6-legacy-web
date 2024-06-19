@@ -1,4 +1,4 @@
-package coding.toast.springweblegacy.user;
+package coding.toast.springweblegacy.user.repository;
 
 import coding.toast.springweblegacy.user.data.table.User;
 import org.springframework.data.jdbc.repository.query.Query;
