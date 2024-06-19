@@ -82,19 +82,24 @@ public SpringResourceTemplateResolver templateResolver() {
 
 # 📌 how to login h2 console
 
-1. tomcat 구동 후, <br>
-콘솔창에 뜨는 `Creating new JDBC Driver Connection to [여기에 jdbc url 이 찍힙니다]`<br>
-에서 jdbc url 을 일단 클립보드에 복사
+톰캣을 구동 시키고 http://localhost:11111/h2-console/ 에 접속합니다.\
+그러면 아래와 같은 콘솔창이 보입니다.
+
+![chrome_v3TSa2EanD.png](readme_img/chrome_v3TSa2EanD.png)
+
+1. `Saved Settings`: `Generic H2 (Embedded)` 선택
+2. 접속 정보를 입력합니다.
+   1. `JDBC URL` : `jdbc:h2:mem:testdb`
+   2. `User Name` : `sa`
+   3. `Password` : (빈 문자열)
+3. `Connect` 버튼을 클릭합니다.
+
+<br>
+
+정상적으로 로그인이 도면 아래와 같이 화면이 뜹니다.
+
+![chrome_gGR0CeVyjw.png](readme_img/chrome_gGR0CeVyjw.png)
 
 
-2. http://localhost:11111/h2-console/ 로 접속
-
-
-
-3. 아래 그림처럼 Saved Settings 에서 Generic H2 (Embedded) 선택하고<br>
-1번에서 복사한 jdbc url 을 콘솔화면 `JDBC URL` 입력란에 붙여넣기 하고<br>
-Connect 버튼 클릭하면 끝.<br>
-
-![chrome_Hhgcr4tE6v.png](readme_img/chrome_Hhgcr4tE6v.png)
 
 
