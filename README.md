@@ -76,3 +76,25 @@ public SpringResourceTemplateResolver templateResolver() {
 ![idea64_aoqeKthsf8.gif](readme_img/idea64_aoqeKthsf8.gif)
 
 > 재차 말씀드리자만 "디버깅 모드" 로 톰캣을 실행해야 합니다! 꼭! 잊지마세요!
+
+
+<br><br>
+
+# 📌 how to login h2 console
+
+1. tomcat 구동 후, <br>
+콘솔창에 뜨는 `Creating new JDBC Driver Connection to [여기에 jdbc url 이 찍힙니다]`<br>
+에서 jdbc url 을 일단 클립보드에 복사
+
+
+2. http://localhost:11111/h2-console/ 로 접속
+
+
+
+3. 아래 그림처럼 Saved Settings 에서 Generic H2 (Embedded) 선택하고<br>
+1번에서 복사한 jdbc url 을 콘솔화면 `JDBC URL` 입력란에 붙여넣기 하고<br>
+Connect 버튼 클릭하면 끝.<br>
+
+![chrome_Hhgcr4tE6v.png](readme_img/chrome_Hhgcr4tE6v.png)
+
+

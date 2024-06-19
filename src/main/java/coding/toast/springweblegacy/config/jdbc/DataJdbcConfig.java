@@ -1,8 +1,5 @@
 package coding.toast.springweblegacy.config.jdbc;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
@@ -11,11 +8,12 @@ import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.util.Properties;
 
 // https://docs.spring.io/spring-data/jdbc/docs/3.1.7/reference/html/#jdbc.java-config
 @Configuration
@@ -23,8 +21,20 @@ import java.util.Properties;
 @EnableJdbcAuditing
 @EnableTransactionManagement
 public class DataJdbcConfig extends AbstractJdbcConfiguration {
-	
+
 	@Bean
+	public DataSource dataSource() {
+		return new EmbeddedDatabaseBuilder()
+				.generateUniqueName(true)
+				.setName("test")
+				.setType(EmbeddedDatabaseType.H2)
+				.setScriptEncoding("UTF-8")
+				.ignoreFailedDrops(true)
+				.addScripts("classpath:sql/schema.sql", "sql/data.sql")
+				.build();
+	}
+	
+	/*@Bean
 	DataSource dataSource(
 		@Value("${my.jdbc.driver}") String myJdbcDriver,
 		@Value("${my.jdbc.url}") String myJdbcUrl,
@@ -44,7 +54,7 @@ public class DataJdbcConfig extends AbstractJdbcConfiguration {
 		properties.setProperty("prepStmtCacheSqlLimit", "2048");
 		hikariConfig.setDataSourceProperties(properties);
 		return new HikariDataSource(hikariConfig);
-	}
+	}*/
 	
 	@Bean
 	NamedParameterJdbcOperations namedParameterJdbcOperations(DataSource dataSource) {
