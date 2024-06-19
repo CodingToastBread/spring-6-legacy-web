@@ -3,7 +3,7 @@ package coding.toast.springweblegacy.user.data.table;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "USERS")
+@Table(name = "users")
 public record User(@Id Long id, String name, String phoneNumber) {
 }
 
