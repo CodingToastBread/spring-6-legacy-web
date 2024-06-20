@@ -26,9 +26,18 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 		registry
 			.addResourceHandler("/favicon.ico")
 			.addResourceLocations("classpath:static/favicon.ico");
-		
-		registry.addResourceHandler("/static/**")
-			.addResourceLocations("classpath:static/");
+
+		registry.addResourceHandler("/js/**")
+				.addResourceLocations("classpath:static/js/");
+
+		registry.addResourceHandler("/img/**")
+				.addResourceLocations("classpath:static/img/");
+
+		registry.addResourceHandler("/css/**")
+				.addResourceLocations("classpath:static/css/");
+
+		registry.addResourceHandler("/etc/**")
+				.addResourceLocations("classpath:static/etc/");
 	}
 	
 	@Bean

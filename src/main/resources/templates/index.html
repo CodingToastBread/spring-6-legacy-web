@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Welcome!</title>
+  <link rel="stylesheet" th:href="@{/css/sample.css}">
+  <script th:src="@{/js/sample.js}"></script>
 </head>
 <body>
-  <h1>안녕!</h1>
-  <a href="users">사용자 목록 보기</a>
+  <h1 th:text="${helloMessage1}"></h1>
+  <h1>[[${helloMessage2}]]</h1>
+  <hr/>
+  <ul>
+    <li><a th:href="@{/users}">사용자 목록 보기</a></li>
+    <li><a th:href="@{/layout/sample}">레이아웃 적용 샘플1</a></li>
+    <li><a download="sample.txt" th:href="@{/etc/sample.txt}">download sample.txt</a></li>
+  </ul>
 </body>
 </html>
