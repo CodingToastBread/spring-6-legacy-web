@@ -1,4 +1,4 @@
-package coding.toast.springweblegacy.complex;
+package coding.toast.springweblegacy.layout.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
