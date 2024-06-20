@@ -39,8 +39,8 @@ public class DataJdbcConfig extends AbstractJdbcConfiguration {
 				.setScriptEncoding("UTF-8")
 				.ignoreFailedDrops(true)
 				.addScripts(
-					"classpath:sql/schema.sql",
-					"classpath:sql/data.sql"
+					"classpath:h2-startup-sql/schema.sql",
+					"classpath:h2-startup-sql/data.sql"
 				)
 
 				// create memory db datasource
