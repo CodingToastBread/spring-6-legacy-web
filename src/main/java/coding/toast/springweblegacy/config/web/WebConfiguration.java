@@ -1,5 +1,6 @@
 package coding.toast.springweblegacy.config.web;
 
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -46,7 +47,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 		resolver.setPrefix("classpath:templates/");
 		resolver.setSuffix(".html");
-		// resolver.setCacheable(false); // For HotSwap + Refreshing Thymeleaf HTML, uncomment this line.
+		//resolver.setCacheable(false); // For HotSwap + Refreshing Thymeleaf HTML, uncomment this line.
 		return resolver;
 	}
 	
@@ -54,6 +55,9 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 	public SpringTemplateEngine templateEngine(SpringResourceTemplateResolver templateResolver) {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver);
+
+		// the config below is for applying [nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect] layout library.
+		templateEngine.addDialect(new LayoutDialect());
 		return templateEngine;
 	}
 	
