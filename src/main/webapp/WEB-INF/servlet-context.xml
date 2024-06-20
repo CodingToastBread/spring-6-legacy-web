@@ -38,7 +38,7 @@
     <!-- Thymeleaf Template Engine Activate (1) -->
     <!--<bean id="templateResolver"
           class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
-        <property name="prefix" value="/WEB-INF/templates/" />
+        <property name="prefix" value="classpath:templates/" />
         <property name="suffix" value=".html" />
     </bean>-->
 
@@ -62,7 +62,7 @@
     </bean>-->
 
     <!-- Resource Resolve ByPassing Default Servlet -->
-    <!--<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
-    <mvc:resources mapping="/resources/**" location="/resources/" />-->
+    <!--<mvc:resources mapping="/favicon.ico" location="classpath:static/favicon.ico" />
+    <mvc:resources mapping="/static/**" location="classpath:static/" />-->
 
 </beans>

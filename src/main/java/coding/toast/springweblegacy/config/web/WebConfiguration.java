@@ -24,10 +24,10 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry
 			.addResourceHandler("/favicon.ico")
-			.addResourceLocations("/favicon.ico");
+			.addResourceLocations("classpath:static/favicon.ico");
 		
-		registry.addResourceHandler("/resources/**")
-			.addResourceLocations("/resources/");
+		registry.addResourceHandler("/static/**")
+			.addResourceLocations("classpath:static/");
 	}
 	
 	@Bean
@@ -44,7 +44,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 	@Bean
 	public SpringResourceTemplateResolver templateResolver() {
 		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-		resolver.setPrefix("/WEB-INF/templates/");
+		resolver.setPrefix("classpath:templates/");
 		resolver.setSuffix(".html");
 		// resolver.setCacheable(false); // For HotSwap + Refreshing Thymeleaf HTML, uncomment this line.
 		return resolver;
