@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/sample-layout.html}">
+<head>
+  <title>Content page</title>
+  <!--/*
+  the javascript import script tag
+  below will be automatically include inside sample-layout.html
+  */-->
+  <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+</head>
+<body>
+<section layout:fragment="content">
+  <h2>실제 컨텐츠 내용입니다!!!!</h2>
+</section>
+</body>
+</html>

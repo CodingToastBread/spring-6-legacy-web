@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+  <title>Layout page</title>
+  <script th:src="@{/js/htmx-2.0.0.min.js}"></script>
+</head>
+<body>
+<header>
+  <h1>이 헤더는 템플릿의 일부입니다.</h1>
+</header>
+<section layout:fragment="content">
+  <p>Page content goes here</p>
+</section>
+</body>
+</html>
