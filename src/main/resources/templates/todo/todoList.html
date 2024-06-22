@@ -1,0 +1,54 @@
+<!-- referred resource : https://codesandbox.io/s/todo-list-using-html-css-and-js-8kew0?file=/index.html -->
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      data-bs-theme="dark"
+>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script th:src="@{/js/fontawesome.js}"></script>
+  <link th:href="@{/css/bootstrap-5.3.3.min.css}" rel="stylesheet"/>
+  <link rel="stylesheet" th:href="@{/css/todo.css}" />
+  <title>TODO List</title>
+</head>
+
+<body>
+<div class="container">
+  <header class="text-center text-light my-4">
+    <h1 class="mb-4">Todo List</h1>
+    <form class="search">
+      <div class="input-group">
+        <input type="text" class="form-control">
+        <button class="btn btn-outline-secondary" type="button">Search</button>
+      </div>
+    </form>
+  </header>
+  
+  <ul class="list-group todos mx-auto text-light">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>Go to the grocery</span>
+      <i class="far fa-trash-alt delete"></i>
+    </li>
+    
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>Do the Laundry</span>
+      <i class="far fa-trash-alt delete"></i>
+    </li>
+    
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>Walk the dog</span>
+      <i class="far fa-trash-alt delete"></i>
+    </li>
+  </ul>
+  
+  <form class="add text-center my-4">
+    <div class="input-group">
+      <input type="text" class="form-control">
+      <button class="btn btn-outline-secondary" type="button">Add</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
