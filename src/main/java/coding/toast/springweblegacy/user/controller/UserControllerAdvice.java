@@ -20,7 +20,6 @@ import java.io.IOException;
 public class UserControllerAdvice {
 
     JsonNodeFactory nodeFactory = JsonNodeFactory.instance;
-
     private static final Logger log = LoggerFactory.getLogger(UserControllerAdvice.class);
     private final MessageSource messageSource;
 
@@ -28,15 +27,20 @@ public class UserControllerAdvice {
     public void handleMethodArgumentNotValidException(HttpServletRequest request,
                                                       HttpServletResponse response,
                                                       MethodArgumentNotValidException ex) {
-
         // get Accept Header value from HttpServletRequest
         // and return proper contents using HttpServletResponse
         ArrayNode jsonNodes = nodeFactory.arrayNode();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String message = messageSource.getMessage(error, LocaleContextHolder.getLocale());
+            
+            // hibernate message interpolate only works on default message! can use {value}, {min}... etc!
+            log.error("get error message using hibernate Message interpolate : {}", error.getDefaultMessage());
+            
+            // message source cant use hibernate message interpolate! that is why is use {1}, not {value}
+            log.error("get error message using messageSource's Message Formatter: {}", message);
             jsonNodes.add(message);
         });
-
+        
         try {
             // for now, i'll just return json contents
             response.setContentType("application/json");

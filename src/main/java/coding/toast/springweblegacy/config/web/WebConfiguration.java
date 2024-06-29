@@ -1,9 +1,12 @@
 package coding.toast.springweblegacy.config.web;
 
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.MediaType;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -21,6 +24,8 @@ import java.nio.charset.StandardCharsets;
 // If you use "WebMvcConfigurationSupport", then don't add "@EnableWebMvc" annotation Like Below!
 @Configuration
 public class WebConfiguration extends WebMvcConfigurationSupport {
+	
+	// resource handling
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry
@@ -40,6 +45,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 				.addResourceLocations("classpath:static/etc/");
 	}
 	
+	// file upload handling
 	@Bean
 	public MultipartResolver multipartResolver() {
 		StandardServletMultipartResolver standardServletMultipartResolver = new StandardServletMultipartResolver();
@@ -49,8 +55,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 	}
 	
 	
-	// https://www.thymeleaf.org/doc/tutorials/3.1/thymeleafspring.html
-	
+	// template engine config (1)
 	@Bean
 	public SpringResourceTemplateResolver templateResolver() {
 		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
@@ -60,6 +65,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 		return resolver;
 	}
 	
+	// template engine config (2)
 	@Bean
 	public SpringTemplateEngine templateEngine(SpringResourceTemplateResolver templateResolver) {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -70,6 +76,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 		return templateEngine;
 	}
 	
+	// template engine config (3)
 	@Bean
 	public ThymeleafViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine) {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -77,5 +84,33 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 		resolver.setContentType(MediaType.TEXT_HTML_VALUE);
 		resolver.setCharacterEncoding(StandardCharsets.UTF_8.toString());
 		return resolver;
+	}
+	
+	// add messageSource
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasenames("classpath:/message/global-message");
+		messageSource.setCacheSeconds(60);
+		messageSource.setDefaultEncoding(StandardCharsets.UTF_8.toString());
+		messageSource.setFallbackToSystemLocale(false);
+		return messageSource;
+	}
+	
+	@Bean
+	public LocalValidatorFactoryBean validator() {
+		LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
+		validatorFactoryBean.setValidationMessageSource(messageSource());
+		return validatorFactoryBean;
+	}
+	
+	/**
+	 * this config is very important if you want to use  Hibernate Validator's MessageInterpolator functionality.<br>
+	 * you can use this functionality inside ControllerAdvice by calling BindingError's getDefaultMessage() method.<br>
+	 * reference code : {@link coding.toast.springweblegacy.user.controller.UserControllerAdvice} here!<br>
+	 */
+	@Override
+	protected org.springframework.validation.Validator getValidator() {
+		return validator();
 	}
 }
